@@ -1,0 +1,67 @@
+@font-face {
+	font-family: Aller;
+	src: url('fonts/Aller/ALLER.ttf');
+}
+
+@font-face {
+	font-family: Aller;
+	font-style: italic;
+	src: url('fonts/Aller/ALLER-ITALIC.ttf');
+}
+	
+@font-face {
+	font-family: Aller;
+	font-weight: bold;
+	src: url('fonts/Aller/ALLER-BOLD.ttf');
+}
+	
+@font-face {
+	font-family: Aller;
+	font-weight: 100;
+	src: url('fonts/AllerLight/ALLER-LIGHT.ttf');
+}
+	
+@font-face {
+	font-family: Aller;
+	font-weight: 100;
+	font-style: italic;
+	src: url('fonts/AllerLight/ALLER-LIGHTITALIC.ttf');
+}
+
+* {
+	margin: 0px;
+	padding: 0px;
+	border: none;
+}
+
+html, body {
+	
+	background-image: url('interface/fond.jpg');
+	
+	font-family: Aller;
+	font-weight: 100;
+	font-style: normal;
+	color: #96928e;
+	
+}
+
+#title {
+	
+	position: fixed;
+	left: 40px; top: 30px;
+	display: inline-block;
+	padding-bottom: 10px;
+	
+	font-family: Aller;
+	font-size: 52px;
+	font-weight: normal;
+	
+	border-bottom: 2px solid #96928e;
+	
+}
+
+#menu {
+	
+	
+	
+}
