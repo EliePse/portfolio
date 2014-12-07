@@ -147,10 +147,11 @@ html, body {
 
 #form-container {
 	
-	width: 100%; height: 450px;
+	width: 450px; height: 450px;
 	position: relative;
 	z-index: 10;
-	/*background-color: rgba(0,0,0,.1)*/
+	/*background-color: rgba(0,0,0,.1);*/
+	overflow: hidden;
 	
 }
 
@@ -179,21 +180,21 @@ html, body {
 #form-main .cube {
 	
 	position: absolute;
-	margin: 1px;
+	/*margin: 1px;*/
 	
 }
 
 #form-main .big-cube {
 	
-	width: 100px;
-	height: 100px;
+	width: 98px;
+	height: 98px;
 	
 }
 
 #form-main .small-cube {
 	
-	width: 49px;
-	height: 49px;
+	width: 48px;
+	height: 48px;
 	
 }
 
