@@ -83,10 +83,6 @@ $(function(){
 		
 	}
 	
-	
-	
-	
-	
 	var c = new Child('#e1634e', 98);
 	
 	$container.mousemove(function(e){
