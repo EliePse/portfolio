@@ -99,6 +99,7 @@ html, body {
 #menu li {
 	
 	list-style-type: none;
+	line-height: 18px;
 	
 }
 
@@ -117,21 +118,17 @@ html, body {
 	
 }
 
-/*#menu li:hover {
-	
-	opacity: 1;
-	
-}
-*/
 #menu .link:hover {
 	
 	opacity: 1;
+	color: #75716d;
 	
 }
 
 #menu .hovered {
 	
 	opacity: 1;
+	color: #75716d;
 	
 }
 
