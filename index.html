@@ -1,22 +1,10 @@
 <html>
 	<head>
 	
-		<link rel="stylesheet" type="text/css" href="admin/src/style.css" />
 		<meta charset="UTF8" />
 		
-		<style type="text/css">
-			
-			.c0 { background-color: #eb7a5e; }
-			.c1 { background-color: #eb7a5e; }
-			.c2 { background-color: #f2956d; }
-			.c3 { background-color: #48a7bd; }
-			.c4 { background-color: #449fc9; }
-			.c5 { background-color: #e1634e; }
-			.c6 { background-color: #58abcc; }
-			.c7 { background-color: #de9959; }
-			.c8 { background-color: #308fba; }
-			
-		</style>
+		<link rel="stylesheet" type="text/css" href="admin/src/reset.css" />
+		<link rel="stylesheet" type="text/css" href="admin/src/style.css" />
 		
 	</head>
 	<body>
@@ -27,23 +15,25 @@
 			<table>
 				<tr>
 					<td>
-						<li>
-							<ul class="title link">Me connaître</ul>
+						<ul>
 							
-							<ul class="title" style="margin-top: 20px;">Digital</ul>
-							<ul class="link">Mur de Pixels</ul>
-							<ul class="link">Random Full Colors</ul>
-							<ul class="link">Workshop ENTRE</ul>
-							<ul class="link">Histoire de Tiroirs</ul>
+							<li class="title link">Me connaître</li>
 							
-							<ul class="title" style="margin-top: 20px;">Imprimé</ul>
-							<ul class="link">Walang Ilaw Sa Bahay</ul>
-							<ul class="link">Les Clés d'Euphonia</ul>
+							<li categorie="1" class="title" style="margin-top: 20px;">Digital</li>
+							<!-- <li projet="pixels" class="link">Mur de Pixels</li>
+							<li projet="a" class="link">Random Full Colors</li>
+							<li projet="d" class="link">Workshop ENTRE</li>
+							<li projet="tiroirs" class="link">Histoire de Tiroirs</li> -->
 							
-							<ul class="title link" style="margin-top: 20px;">CV</ul>
-							<ul class="title link">Contact</ul>
-							<ul class="title link">Liens amis</ul>
-						</li>
+							<li categorie="2" class="title" style="margin-top: 20px;">Imprimé</li>
+							<!-- <li projet="walang" class="link">Walang Ilaw Sa Bahay</li>
+							<li projet="e" class="link">Les Clés d'Euphonia</li> -->
+							
+							<li class="title link" style="margin-top: 20px;">CV</li>
+							<li class="title link">Contact</li>
+							<li class="title link">Liens amis</li>
+							
+						</ul>
 					</td>
 				</tr>	
 			</table>
@@ -53,21 +43,8 @@
 			<table>
 				<tr>
 					<td>
-						<div id="previews">
-							<!-- <img src="admin/src/interface/couv-projets/walang.jpg" alt=""/> -->
-						</div>
-						<div id="form-container">
-							
-							<div class="cube big-cube c1" style="left: 1px;top: 101px;"></div>
-							<div class="cube big-cube c2" style="left: 101px;top: 51px;"></div>
-							<div class="cube big-cube c3" style="left: 201px;top: 101px;"></div>
-							<div class="cube big-cube c4" style="left: 101px;top: 201px;"></div>
-							<div class="cube small-cube c5" style="left: 151px;top: 151px;"></div>
-							<div class="cube small-cube c6" style="left: 101px;top: 151px;"></div>
-							<div class="cube small-cube c7" style="left: 201px;top: 51px;"></div>
-							<div class="cube small-cube c8" style="left: 201px;top: 201px;"></div>
-							
-						</div>
+						<div id="preview"></div>
+						<div id="form-container"></div>
 					</td>
 				</tr>
 			</table>
@@ -80,6 +57,7 @@
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 		<script type="text/javascript" src="admin/src/js/functions.js"></script>
 		<script type="text/javascript" src="admin/src/js/main.js"></script>
+		<script type="text/javascript" src="admin/src/js/forme.js"></script>
 		
 	</body>
 </html>
