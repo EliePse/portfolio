@@ -1,4 +1,4 @@
-.article {
+.article-main {
 	
 	position: fixed;
 	left: 0px; top: 0px;
@@ -8,16 +8,21 @@
 	
 }
 
-.article table {
+.article-main table {
 	
 	width: 100%;
 	height: 100%;
 	
 }
 
+.article-main .middle {
+	
+	vertical-align: middle;
+	
+}
 .article-content {
 	
-	height: 500px;
+	/*height: 500px;*/
 	position: relative;
 	z-index: 11;
 	overflow: hidden;
@@ -36,13 +41,22 @@
 
 .article-content .content {
 	
-	width: 100%;
-	height: 450px;
+	width: 450px;
+	/*height: 450px;*/
 	overflow: hidden;
 	
 }
 
-.article-content table {
+.article-content .content .page {
+	
+	width: 395px;
+	height: 370px;
+	vertical-align: top;
+	display: inline-block;
+	
+}
+
+/*.article-content table {
 	
 	height: 370px;
 	margin-top: 16px;
@@ -56,7 +70,7 @@
 	height: 370px;
 	vertical-align: top;
 	
-}
+}*/
 
 .article-content .desc-end {
 	

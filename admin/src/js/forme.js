@@ -1,6 +1,7 @@
 $(function() {
 	
 	
+	
 	var $container = $('#form-container'),
 		$preview = $('#preview'),
 		squares = [];
@@ -26,7 +27,7 @@ $(function() {
 			
 			if(isReady) return;
 			
-			var html = '<div class="cube '+ (( size === 1 ) ? 'small-cube' : 'big-cube') +'" projet="'+ name +'" style="display:none;"><div></div></div>';
+			var html = '<div class="cube '+ (( size === 1 ) ? 'small-cube' : 'big-cube') +'" projet="'+ name +'" style="display:none;"><div class="rest" style="background-color:'+ color +'"></div><div class="hovered" style="border: 5px solid '+ color +';"></div></div>';
 			
 			$container.append(html);
 			$('#menu li[categorie=' + menu.categorie + ']').after('<li projet="'+ name +'" class="link">'+ menu.titre +'</li>');
@@ -36,7 +37,7 @@ $(function() {
 			$this.on('mouseleave', Emouseleave);
 			$('#menu li[projet='+ name +']').on('mouseenter', Emouseenter);
 			
-			$this.css('opacity', 0).width( 0 ).height( 0 ).find('div').css('background-color', color);
+			$this.css('opacity', 0).width( 0 ).height( 0 );
 			$this.css('left', (( size === 1 ) ? position.x + 25 : position.x + 50)).css('top', (( size === 1 ) ? position.y + 25 : position.y + 50));
 			$this.animate({
 				left: position.x,
@@ -52,16 +53,6 @@ $(function() {
 		}
 		
 		
-		
-		this.update = function(force) {
-			
-			if(isReady && !force) return;
-			
-			$this.css('left', position.x + 'px').css('top', position.y + 'px').find('div').css('background-color', color);
-			
-		};
-		
-		
 		this.mouseenter = Emouseenter;
 		this.mouseleave = Emouseleave;
 		this.name = name;
@@ -72,9 +63,9 @@ $(function() {
 		/* EVENTS */
 		function Emouseenter() {
 			
-			$('.cube').css('opacity', .3);
-			$('#form-container div div div').fadeIn(200);
-			$this.css('opacity', 1);
+			$('.cube .hovered').show();
+			$('.cube .rest').hide();
+			$this.find('.rest').show();
 			$preview.hide();
 			$preview.css('background-image', 'url(admin/src/interface/couv-projets/' + name + '.jpg)').fadeIn(150);
 			$('#menu li[projet=' + name + ']').addClass('hovered');
@@ -83,7 +74,8 @@ $(function() {
 		
 		function Emouseleave() {
 			
-			$('.cube').css('opacity', 1);
+			$('.cube .hovered').hide();
+			$('.cube .rest').show();
 			$preview.css('background', 'none');
 			$('#menu li[projet]').removeClass('hovered');
 			
@@ -94,7 +86,7 @@ $(function() {
 	
 	
 	
-	
+	/* LOADING */
 	$.ajax({
 		dataType: "json",
 		url: 'admin/src/articles/articles.json?time=' + new Date().getTime()
@@ -130,28 +122,16 @@ $(function() {
 	
 	
 	
+	
+	/* EVENTS */
 	$('#menu').on('mouseleave', 'li[projet]', function() {
 		
-		$('.cube').css('opacity', 1).removeClass('hovered');
+		$('.cube .hovered').hide();
+		$('.cube .rest').show();
 		$preview.css('background', 'none');
 		$('#menu li[projet]').removeClass('hovered');
 		
 	});
-	
-	
-	
-	
-	
-	// var projets = [
-	// 	{n: 'a', p: [50, 150], c: '#eb7a5e', s: 2},
-	// 	{n: 'pixels', p: [150, 100], c: '#f2956d', s: 2},
-	// 	{n: 'walang', p: [250, 150], c: '#48a7bd', s: 2},
-	// 	{n: 'd', p: [150, 250], c: '#449fc9', s: 2},
-	// 	{n: 'e', p: [200, 200], c: '#e1634e', s: 1},
-	// 	{n: 'tiroirs', p: [150, 200], c: '#58abcc', s: 1},
-	// 	{n: 'g', p: [250, 100], c: '#de9959', s: 1},
-	// 	{n: 'h', p: [250, 250], c: '#308fba', s: 1}
-	// ];	
 	
 	
 	
