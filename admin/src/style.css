@@ -81,6 +81,7 @@ html, body {
 	position: absolute;
 	left: 40px; top: 0px;
 	color: #2f2f2f;
+	z-index: 50;
 	
 }
 
@@ -99,7 +100,7 @@ html, body {
 #menu li {
 	
 	list-style-type: none;
-	line-height: 18px;
+	line-height: 20px;
 	
 }
 
