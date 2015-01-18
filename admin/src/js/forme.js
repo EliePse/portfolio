@@ -3,8 +3,9 @@ $(function() {
 	
 	
 	var $container = $('#form-container'),
-		$preview = $('#preview'),
-		squares = [];
+		 $preview = $('#preview'),
+		 $articleMain = $('.article-main'),
+		 squares = [];
 	
 	
 	
@@ -19,6 +20,7 @@ $(function() {
 				titre: titre,
 				categorie: categorie
 			},
+			animating = true,
 			$this;
 		
 		
@@ -35,6 +37,7 @@ $(function() {
 			$this = $('.cube[projet='+ name +']');
 			$this.on('mouseenter', Emouseenter);
 			$this.on('mouseleave', Emouseleave);
+			$this.on('click', Emouseclick);
 			$('#menu li[projet='+ name +']').on('mouseenter', Emouseenter);
 			
 			$this.css('opacity', 0).width( 0 ).height( 0 );
@@ -45,7 +48,9 @@ $(function() {
 				width: (( size === 1 ) ? 50 : 100),
 				height: (( size === 1 ) ? 50 : 100),
 				opacity: 1
-			}, 300);
+			}, 300, function() {
+				animating = false;
+			});
 			$this.show();
 			
 			isReady = true;
@@ -55,6 +60,7 @@ $(function() {
 		
 		this.mouseenter = Emouseenter;
 		this.mouseleave = Emouseleave;
+		this.click = Emouseclick;
 		this.name = name;
 		this.init = init;
 		
@@ -62,6 +68,8 @@ $(function() {
 		
 		/* EVENTS */
 		function Emouseenter() {
+			
+			if(animating) return;
 			
 			$('.cube .hovered').show();
 			$('.cube .rest').hide();
@@ -78,6 +86,37 @@ $(function() {
 			$('.cube .rest').show();
 			$preview.css('background', 'none');
 			$('#menu li[projet]').removeClass('hovered');
+			
+		}
+		
+		function Emouseclick() {
+			
+			animating = true;
+			
+			$('.cube .hovered').hide();
+			$('.cube .rest').show();
+			$preview.css('background', 'none');
+			$('#menu li[projet]').removeClass('hovered');
+			
+			$('.cube').not($this).animate({
+				
+				opacity: 0
+				
+			}, 450, function(){
+				
+				$this.animate({
+					
+					left: -10,
+					opacity: 0
+					
+				}, 300, function() {
+					
+					$articleMain.fadeIn();
+					
+					animating = false;
+				});
+				
+			});
 			
 		}
 		
