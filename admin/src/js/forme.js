@@ -333,4 +333,16 @@ $(function() {
 	
 	
 	
+	$('.link[page]').click(function() {
+		
+		$this = $(this);
+		$('#form-main').fadeOut(300);
+		$articleMain.find('.projets').hide();
+		$articleMain.find('.' + $this.attr('page')).show();
+		$articleMain.fadeIn(300);
+		
+	});
+	
+	
+	
 });
