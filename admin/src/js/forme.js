@@ -3,9 +3,9 @@ $(function() {
 	
 	
 	var $container = $('#form-container'),
-		 $preview = $('#preview'),
-		 $articleMain = $('.article-main'),
-		 squares = [];
+		$preview = $('#preview'),
+		$articleMain = $('.article-main'),
+		squares = [];
 	
 	
 	
@@ -21,6 +21,7 @@ $(function() {
 				categorie: categorie
 			},
 			animating = true,
+			smode = 1,
 			$this;
 		
 		
@@ -57,6 +58,56 @@ $(function() {
 			
 		}
 		
+		function loadArticle() {
+			
+			$.ajax({
+				
+				dataType: "json",
+				url: 'admin/src/articles/' + name + '/content.json?time=' + tDate.getDate() + tDate.getMonth() + tDate.getFullYear()
+				
+			}).done(function(e) {
+				
+				var pages = e.pages;
+				var $articlePages = $articleMain.find('.content tr');
+				
+				$articleMain.find('.titre').html(e.title);
+				for(var i = 0; i < pages.length; i++) {
+					var page = pages[i];
+					var html = '<td class="page" index="' + i + '" >';
+						if(page.type === 1) {
+							
+							html += '<div class="text" '+ ((page.endOfDesc) ? 'style="border-right: 2px solid #'+ color +';"' : '') +'>';
+							html += '<p>'+ page.content +'</p>';
+							html += '</div>';
+							
+						} else if (page.type === 2) {
+							
+							html += '<div class="img" '+ ((page.endOfDesc) ? 'style="border-right: 2px solid #'+ color +';"' : '') +'>';
+							html += '<img src="admin/src/articles/' + name + '/img/'+ page.content.src +'" />';
+							html += '</div>';
+							
+						}
+						html+= '</td>';
+					
+					$articlePages.append(html);
+					
+				}
+				
+				$this.animate({
+					
+					left: -10,
+					opacity: 0
+					
+				}, 300, function() {
+					
+					$articleMain.fadeIn();
+					animating = false;
+					
+				});
+				
+			});
+
+		}
 		
 		this.mouseenter = Emouseenter;
 		this.mouseleave = Emouseleave;
@@ -69,7 +120,8 @@ $(function() {
 		/* EVENTS */
 		function Emouseenter() {
 			
-			if(animating) return;
+			if(animating || smode === 2) return;
+			console.log(smode)
 			
 			$('.cube .hovered').show();
 			$('.cube .rest').hide();
@@ -81,43 +133,33 @@ $(function() {
 		}
 		
 		function Emouseleave() {
+			if(animating || smode === 2) return;
 			
 			$('.cube .hovered').hide();
 			$('.cube .rest').show();
 			$preview.css('background', 'none');
 			$('#menu li[projet]').removeClass('hovered');
-			
 		}
 		
 		function Emouseclick() {
+			if(animating || smode === 2) return;
 			
 			animating = true;
+			smode = 2;
 			
 			$('.cube .hovered').hide();
 			$('.cube .rest').show();
 			$preview.css('background', 'none');
 			$('#menu li[projet]').removeClass('hovered');
 			
+			$('#menu').fadeOut();
 			$('.cube').not($this).animate({
 				
 				opacity: 0
 				
-			}, 450, function(){
-				
-				$this.animate({
-					
-					left: -10,
-					opacity: 0
-					
-				}, 300, function() {
-					
-					$articleMain.fadeIn();
-					
-					animating = false;
-				});
-				
-			});
-			
+			}, 450);
+			setTimeout(loadArticle, 450);
+			console.log(smode)
 		}
 		
 	}
@@ -126,9 +168,12 @@ $(function() {
 	
 	
 	/* LOADING */
+	
+	var tDate = new Date();
+	
 	$.ajax({
 		dataType: "json",
-		url: 'admin/src/articles/articles.json?time=' + new Date().getTime()
+		url: 'admin/src/articles/articles.json?time=' + tDate.getDate() + tDate.getMonth() + tDate.getFullYear()
 	}).done(function(e) {
 		
 		

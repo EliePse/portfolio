@@ -18,40 +18,40 @@
 			"content": {
 				"width": 778,
 				"height": 584,
-				"name": "walang-1",
-				"size": 46643,
-				"endOfDesc": false
-			}
+				"src": "walang-1.jpg",
+				"size": 46643
+			},
+			"endOfDesc": false
 		},
 		{
 			"type": 2,
 			"content": {
 				"width": 778,
 				"height": 584,
-				"name": "walang-2",
-				"size": 35572,
-				"endOfDesc": false
-			}
+				"src": "walang-2.jpg",
+				"size": 35572
+			},
+			"endOfDesc": false
 		},
 		{
 			"type": 2,
 			"content": {
 				"width": 778,
 				"height": 584,
-				"name": "walang-3",
-				"size": 44546,
-				"endOfDesc": false
-			}
+				"src": "walang-3.jpg",
+				"size": 44546
+			},
+			"endOfDesc": false
 		},
 		{
 			"type": 2,
 			"content": {
 				"width": 778,
 				"height": 584,
-				"name": "walang-4",
-				"size": 46423,
-				"endOfDesc": false
-			}
+				"src": "walang-4.jpg",
+				"size": 46423
+			},
+			"endOfDesc": false
 		}
 		
 	]
