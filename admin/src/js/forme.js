@@ -220,10 +220,11 @@ $(function() {
 					
 					for(var i=0; i < squares.length; i++)
 						squares[i].popIn();
+					
+					setTimeout(function(){ $('#menu .articles').fadeIn(300); }, (squares.length * 50) + 300);
 						
 				});
 				
-				setTimeout(function(){ $('#menu .articles').fadeIn(300); }, 350);
 			}
 				
 		}
