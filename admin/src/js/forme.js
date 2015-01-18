@@ -57,7 +57,7 @@ $(function() {
 			}).done(function(e) {
 				
 				var pages = e.pages;
-				var $articlePages = $articleMain.find('.content tr');
+				var $articlePages = $articleMain.find('.projets .content tr');
 				
 				$articleMain.find('.titre').html(e.title);
 				for(var i = 0; i < pages.length; i++) {
@@ -92,6 +92,7 @@ $(function() {
 						
 					}, 300, function() {
 						
+						$articleMain.find('.projets').show();
 						$articleMain.fadeIn(function() {
 							
 							$('#menu .backFromArticles').fadeIn();
@@ -306,7 +307,7 @@ $(function() {
 		$(this).fadeOut(300);
 		$articleMain.fadeOut(300, function() {
 			
-			$articleMain.find('.content tr').html('');
+			$articleMain.find('.projets table tr').html('');
 			$('.cube').hide();
 			$container.show();
 			
@@ -333,16 +334,35 @@ $(function() {
 	
 	
 	
+	
+	$('#menu .backFromPages').click(function() {
+		
+		$(this).fadeOut(300);
+		$articleMain.fadeOut(300, function() {
+			
+			$articleMain.find('.amis, .connaitre').hide();
+			$container.show();
+			$('#form-main').fadeIn(300);
+			$('.articles').fadeIn(300);
+			
+		});
+				
+	});
+	
+	
+	
 	$('.link[page]').click(function() {
 		
 		$this = $(this);
+		
+		$('#menu .articles').fadeOut();
+		$('#menu .backFromPages').fadeIn(300);
 		$('#form-main').fadeOut(300);
 		$articleMain.find('.projets').hide();
 		$articleMain.find('.' + $this.attr('page')).show();
 		$articleMain.fadeIn(300);
 		
 	});
-	
 	
 	
 });
