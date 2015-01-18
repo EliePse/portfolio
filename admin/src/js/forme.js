@@ -22,6 +22,7 @@ $(function() {
 				categorie: categorie
 			},
 			animating = true,
+			$cover,
 			$this;
 		
 		
@@ -33,16 +34,16 @@ $(function() {
 			var html = '<div class="cube '+ (( size === 1 ) ? 'small-cube' : 'big-cube') +'" projet="'+ name +'" style="display:none;"><div class="rest" style="background-color:#'+ color +'"></div><div class="hovered" style="border: 5px solid #'+ color +';"></div></div>';
 			
 			$container.append(html);
+			$preview.append('<img projet="'+ name +'" toLoad="admin/src/interface/couv-projets/' + name + '.jpg" alt="converture '+ name +'" />');
 			$('#menu li[categorie=' + menu.categorie + ']').after('<li projet="'+ name +'" class="link">'+ menu.titre +'</li>');
 			
 			$this = $('.cube[projet='+ name +']');
+			$cover = $preview.find('img[projet='+ name+']');
+			
 			$this.on('mouseenter', Emouseenter);
 			$this.on('mouseleave', Emouseleave);
 			$this.on('click', Emouseclick);
 			$('#menu li[projet='+ name +']').on('mouseenter', Emouseenter);
-			
-			popIn();
-			isReady = true;
 			
 		}
 		
@@ -71,7 +72,7 @@ $(function() {
 						} else if (page.type === 2) {
 							
 							html += '<div class="img" '+ ((page.endOfDesc) ? 'style="border-right: 2px solid #'+ color +';"' : '') +'>';
-							html += '<img toLoad="admin/src/articles/' + name + '/img/'+ page.content.src +'" />';
+							html += '<img toLoad="admin/src/articles/' + name + '/img/'+ page.content.src +'" alt="visuel '+ name +'" />';
 							html += '</div>';
 							
 						}
@@ -105,9 +106,10 @@ $(function() {
 
 		}
 		
-		function popIn() {
+		function popIn(callback) {
 			
 			animating = true;
+			console.log(name)
 			
 			$this.css('opacity', 0).width( 0 ).height( 0 );
 			$this.css('left', (( size === 1 ) ? position.x + 25 : position.x + 50)).css('top', (( size === 1 ) ? position.y + 25 : position.y + 50));
@@ -124,6 +126,7 @@ $(function() {
 			
 			$this.show();
 			mode = 1;
+			isReady = true;
 			
 		}
 		
@@ -144,8 +147,7 @@ $(function() {
 			$('.cube .hovered').show();
 			$('.cube .rest').hide();
 			$this.find('.rest').show();
-			$preview.hide();
-			$preview.css('background-image', 'url(admin/src/interface/couv-projets/' + name + '.jpg)').fadeIn(150);
+			$cover.show();
 			$('#menu li[projet=' + name + ']').addClass('hovered');
 			
 		}
@@ -156,7 +158,7 @@ $(function() {
 			
 			$('.cube .hovered').hide();
 			$('.cube .rest').show();
-			$preview.css('background', 'none');
+			$cover.hide();
 			$('#menu li[projet]').removeClass('hovered');
 		}
 		
@@ -169,7 +171,7 @@ $(function() {
 			
 			$('.cube .hovered').hide();
 			$('.cube .rest').show();
-			$preview.css('background', 'none');
+			$cover.fadeOut(450);
 			$('#menu li[projet]').removeClass('hovered');
 			
 			$('#menu .articles').fadeOut();
@@ -212,20 +214,28 @@ $(function() {
 			carret++;
 			
 			if(carret < projets.length)
-				setTimeout(squareBySquare, 33);
-			else
+				setTimeout(squareBySquare, 50);
+			else {
+				loadImages(function(){
+					
+					for(var i=0; i < squares.length; i++)
+						squares[i].popIn();
+						
+				});
+				
 				setTimeout(function(){ $('#menu .articles').fadeIn(300); }, 350);
+			}
 				
 		}
 		
 		setTimeout(squareBySquare, 300);
-		
-		
 	}).fail(function(a,f,e) {
 		
 		alert('Erreur de chargement ! :(')
-		
 	});
+	
+	
+	
 	
 	
 	
@@ -251,7 +261,7 @@ $(function() {
 			
 			img.onload = function() {
 				
-				actualElement.attr('src', this.src);
+				actualElement.attr('src', this.src).removeAttr('toLoad');
 				console.log((iteration + 1) + '/' + elements.length + ' - loaded' );
 				
 				iteration++;
@@ -269,7 +279,6 @@ $(function() {
 		}
 		
 		load();
-		
 	}
 	
 	
@@ -279,7 +288,7 @@ $(function() {
 		
 		$('.cube .hovered').hide();
 		$('.cube .rest').show();
-		$preview.css('background', 'none');
+		$preview.find('img').hide();
 		$('#menu li[projet]').removeClass('hovered');
 		
 	});
@@ -301,7 +310,7 @@ $(function() {
 				carret++;
 				
 				if(carret < squares.length)
-					setTimeout(squareBySquare, 33);
+					setTimeout(squareBySquare, 50);
 				else
 					setTimeout(function(){ $('#menu .articles').fadeIn(300); }, 350);
 					

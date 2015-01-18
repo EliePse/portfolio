@@ -243,6 +243,14 @@ html, body {
 	
 }
 
+#preview img {
+	
+	position: absolute;
+	left: 0px; top: 0px;
+	display: none;
+	
+}
+
 
 
 

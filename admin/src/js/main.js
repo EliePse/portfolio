@@ -16,7 +16,7 @@ $(function(){
 		
 	};
 	
-	$('#edit-tools .type li[type=texte]').click(function(){
+	/*$('#edit-tools .type li[type=texte]').click(function(){
 		$('#edit-tools .tool').hide();
 		$('#edit-tools .tool[atype=texte]').show();
 		var page = { type: 1, content: '' };
@@ -167,7 +167,7 @@ $(function(){
 			    
 		};
 
-	}
+	}*/
 	
 	
 	

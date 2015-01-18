@@ -4,66 +4,26 @@
 		{
 			"name" : "walang",
 			"titre" : "Walang Ilaw Sah bahay",
+			"couleur" : "f2956d",
+			"position" : [200, 200],
 			"categorie" : 2,
-			"couleur" : "48a7bd",
-			"position" : [250, 150],
-			"taille" : 2
+			"taille" : 1
 		},
 		{
 			"name" : "pixels",
 			"titre" : "Mur de Pixels",
-			"categorie" : 1,
-			"couleur" : "f2956d",
+			"couleur" : "48a7bd",
 			"position" : [150, 100],
+			"categorie" : 1,
 			"taille" : 2
 		},
 		{
 			"name" : "tiroirs",
 			"titre" : "Histoire de Tiroirs",
-			"categorie" : 1,
 			"couleur" : "58abcc",
-			"position" : [150, 200],
-			"taille" : 1
-		},
-		{
-			"name" : "colors",
-			"titre" : "Random Full Colors",
+			"position" : [250, 150],
 			"categorie" : 1,
-			"couleur" : "eb7a5e",
-			"position" : [50, 150],
 			"taille" : 2
-		},
-		{
-			"name" : "entre",
-			"titre" : "Workshop ENTRE",
-			"categorie" : 1,
-			"couleur" : "449fc9",
-			"position" : [150, 250],
-			"taille" : 2
-		},
-		{
-			"name" : "euphonia",
-			"titre" : "Les Clés d'Euphonia",
-			"categorie" : 2,
-			"couleur" : "e1634e",
-			"position" : [200, 200],
-			"taille" : 1
-		},
-		{
-			"name" : "g",
-			"titre" : "Workshop CNAP",
-			"categorie" : 1,
-			"couleur" : "de9959",
-			"position" : [250, 100],
-			"taille" : 1
-		},
-		{
-			"name" : "h",
-			"titre" : "Nouvel An Chinois",
-			"categorie" : 1,
-			"couleur" : "308fba",
-			"position" : [250, 250],
-			"taille" : 1
 		}
 	]
 	
