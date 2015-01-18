@@ -84,6 +84,7 @@ $(function() {
 				
 				loadImages(function(){
 					
+					$this.removeClass('loading-cube');
 					$this.animate({
 						
 						left: -10,
@@ -111,6 +112,7 @@ $(function() {
 			animating = true;
 			console.log(name)
 			
+			$this.removeClass('loading-cube');
 			$this.css('opacity', 0).width( 0 ).height( 0 );
 			$this.css('left', (( size === 1 ) ? position.x + 25 : position.x + 50)).css('top', (( size === 1 ) ? position.y + 25 : position.y + 50));
 			
@@ -125,6 +127,7 @@ $(function() {
 			});
 			
 			$this.show();
+			
 			mode = 1;
 			isReady = true;
 			
@@ -174,6 +177,8 @@ $(function() {
 			$cover.fadeOut(450);
 			$('#menu li[projet]').removeClass('hovered');
 			
+			$this.addClass('loading-cube');
+			
 			$('#menu .articles').fadeOut();
 			$('.cube').not($this).animate({
 				
@@ -217,6 +222,8 @@ $(function() {
 				setTimeout(squareBySquare, 50);
 			else {
 				loadImages(function(){
+					
+					$('.loading-cube').fadeOut(500).remove();
 					
 					for(var i=0; i < squares.length; i++)
 						squares[i].popIn();

@@ -195,7 +195,7 @@ html, body {
 	
 }
 
-#form-container .cube {
+.cube {
 	
 	position: absolute;
 	cursor: pointer;
@@ -231,7 +231,13 @@ html, body {
 #form-container .big-cube div { width: 98px; height: 98px; }
 #form-container .small-cube div { width: 48px; height: 48px; }
 
+.loading-cube {
+    -webkit-animation: loading 1s 1s infinite alternate; /* Chrome, Safari, Opera */
+    animation: loading 1s 1s infinite alternate;
+}
 
+@-webkit-keyframes loading { from {opacity: 1;} to {opacity: 0;} }
+@keyframes loading { from {opacity: 1;} to {opacity: 0;} }
 
 
 
