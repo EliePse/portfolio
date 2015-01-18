@@ -5,6 +5,7 @@ $(function() {
 	var $container = $('#form-container'),
 		$preview = $('#preview'),
 		$articleMain = $('.article-main'),
+		mode = 1,
 		squares = [];
 	
 	
@@ -21,7 +22,6 @@ $(function() {
 				categorie: categorie
 			},
 			animating = true,
-			smode = 1,
 			$this;
 		
 		
@@ -41,19 +41,7 @@ $(function() {
 			$this.on('click', Emouseclick);
 			$('#menu li[projet='+ name +']').on('mouseenter', Emouseenter);
 			
-			$this.css('opacity', 0).width( 0 ).height( 0 );
-			$this.css('left', (( size === 1 ) ? position.x + 25 : position.x + 50)).css('top', (( size === 1 ) ? position.y + 25 : position.y + 50));
-			$this.animate({
-				left: position.x,
-				top: position.y,
-				width: (( size === 1 ) ? 50 : 100),
-				height: (( size === 1 ) ? 50 : 100),
-				opacity: 1
-			}, 300, function() {
-				animating = false;
-			});
-			$this.show();
-			
+			popIn();
 			isReady = true;
 			
 		}
@@ -83,7 +71,7 @@ $(function() {
 						} else if (page.type === 2) {
 							
 							html += '<div class="img" '+ ((page.endOfDesc) ? 'style="border-right: 2px solid #'+ color +';"' : '') +'>';
-							html += '<img src="admin/src/articles/' + name + '/img/'+ page.content.src +'" />';
+							html += '<img toLoad="admin/src/articles/' + name + '/img/'+ page.content.src +'" />';
 							html += '</div>';
 							
 						}
@@ -93,15 +81,23 @@ $(function() {
 					
 				}
 				
-				$this.animate({
+				loadImages(function(){
 					
-					left: -10,
-					opacity: 0
-					
-				}, 300, function() {
-					
-					$articleMain.fadeIn();
-					animating = false;
+					$this.animate({
+						
+						left: -10,
+						opacity: 0
+						
+					}, 300, function() {
+						
+						$articleMain.fadeIn(function() {
+							
+							$('#menu .backFromArticles').fadeIn();
+							
+						});
+						animating = false;
+						
+					});
 					
 				});
 				
@@ -109,9 +105,32 @@ $(function() {
 
 		}
 		
+		function popIn() {
+			
+			animating = true;
+			
+			$this.css('opacity', 0).width( 0 ).height( 0 );
+			$this.css('left', (( size === 1 ) ? position.x + 25 : position.x + 50)).css('top', (( size === 1 ) ? position.y + 25 : position.y + 50));
+			
+			$this.animate({
+				left: position.x,
+				top: position.y,
+				width: (( size === 1 ) ? 50 : 100),
+				height: (( size === 1 ) ? 50 : 100),
+				opacity: 1
+			}, 300, function() {
+				animating = false;
+			});
+			
+			$this.show();
+			mode = 1;
+			
+		}
+		
 		this.mouseenter = Emouseenter;
 		this.mouseleave = Emouseleave;
 		this.click = Emouseclick;
+		this.popIn = popIn;
 		this.name = name;
 		this.init = init;
 		
@@ -120,8 +139,7 @@ $(function() {
 		/* EVENTS */
 		function Emouseenter() {
 			
-			if(animating || smode === 2) return;
-			console.log(smode)
+			if(animating || mode === 2) return;
 			
 			$('.cube .hovered').show();
 			$('.cube .rest').hide();
@@ -133,7 +151,8 @@ $(function() {
 		}
 		
 		function Emouseleave() {
-			if(animating || smode === 2) return;
+			
+			if(animating || mode === 2) return;
 			
 			$('.cube .hovered').hide();
 			$('.cube .rest').show();
@@ -142,24 +161,26 @@ $(function() {
 		}
 		
 		function Emouseclick() {
-			if(animating || smode === 2) return;
+			
+			if(animating || mode === 2) return;
 			
 			animating = true;
-			smode = 2;
+			mode = 2;
 			
 			$('.cube .hovered').hide();
 			$('.cube .rest').show();
 			$preview.css('background', 'none');
 			$('#menu li[projet]').removeClass('hovered');
 			
-			$('#menu').fadeOut();
+			$('#menu .articles').fadeOut();
 			$('.cube').not($this).animate({
 				
 				opacity: 0
 				
 			}, 450);
 			setTimeout(loadArticle, 450);
-			console.log(smode)
+			console.log(mode);
+			
 		}
 		
 	}
@@ -192,6 +213,8 @@ $(function() {
 			
 			if(carret < projets.length)
 				setTimeout(squareBySquare, 33);
+			else
+				setTimeout(function(){ $('#menu .articles').fadeIn(300); }, 350);
 				
 		}
 		
@@ -206,6 +229,50 @@ $(function() {
 	
 	
 	
+	function loadImages(callback) {
+		
+		var elements = $('img[toLoad]');
+		
+		if(elements.length === 0) {
+			if(callback) callback();
+			return;
+		}
+		
+		var	actualElement,
+			iteration = 0;
+		
+		function load() {
+			
+			
+			actualElement = $(elements[iteration]);
+			var img = new Image();
+			
+			console.log((iteration + 1) + '/' + elements.length + ' - loading' );
+			
+			img.onload = function() {
+				
+				actualElement.attr('src', this.src);
+				console.log((iteration + 1) + '/' + elements.length + ' - loaded' );
+				
+				iteration++;
+				
+				if(iteration < elements.length) {
+					load();
+				} else {
+					if(callback) callback();
+					return;
+				}
+				
+			}
+			
+			img.src = actualElement.attr('toLoad');
+		}
+		
+		load();
+		
+	}
+	
+	
 	
 	/* EVENTS */
 	$('#menu').on('mouseleave', 'li[projet]', function() {
@@ -215,6 +282,36 @@ $(function() {
 		$preview.css('background', 'none');
 		$('#menu li[projet]').removeClass('hovered');
 		
+	});
+	
+	$('#menu .backFromArticles').click(function() {
+		
+		$(this).fadeOut(300);
+		$articleMain.fadeOut(300, function() {
+			
+			$articleMain.find('.content tr').html('');
+			$('.cube').hide();
+			$container.show();
+			
+			var carret = 0;
+			
+			function squareBySquare() {
+			
+				squares[carret].popIn();
+				carret++;
+				
+				if(carret < squares.length)
+					setTimeout(squareBySquare, 33);
+				else
+					setTimeout(function(){ $('#menu .articles').fadeIn(300); }, 350);
+					
+					
+			}
+			
+			setTimeout(squareBySquare, 300);
+			
+		});
+				
 	});
 	
 	
