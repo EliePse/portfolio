@@ -59,7 +59,7 @@ $(function() {
 				var pages = e.pages;
 				var $articlePages = $articleMain.find('.projets .content tr');
 				
-				$articleMain.find('.titre').html(e.title);
+				$articleMain.find('.projets .titre').html(e.title);
 				for(var i = 0; i < pages.length; i++) {
 					var page = pages[i];
 					var html = '<td class="page" index="' + i + '" >';
@@ -355,8 +355,11 @@ $(function() {
 		
 		$this = $(this);
 		
-		$('#menu .articles').fadeOut();
-		$('#menu .backFromPages').fadeIn(300);
+		$('#menu .articles').fadeOut(function() {
+			
+			$('#menu .backFromPages').fadeIn(300);
+			
+		});
 		$('#form-main').fadeOut(300);
 		$articleMain.find('.projets').hide();
 		$articleMain.find('.' + $this.attr('page')).show();
