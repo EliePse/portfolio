@@ -64,6 +64,18 @@
 	min-height: 200px;
 	max-height: 330px;
 	
+	background-color: none;
+	
+}
+
+.projets {
+	
+	cursor: grab;
+	
+}
+
+.projets .text {
+	
 	background-color: #fff;
 	
 }
