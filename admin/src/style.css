@@ -59,9 +59,11 @@ html, body {
 	font-family: Aller;
 	font-size: 52px;
 	font-weight: normal;
-	cursor: pointer;
+	cursor: default;
 	
 	transition: all .2s;
+	
+	z-index: 90;
 	
 }
 

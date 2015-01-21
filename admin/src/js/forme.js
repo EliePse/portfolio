@@ -258,6 +258,9 @@ $(function() {
 			return;
 		}
 		
+		$('#loading-indicator span').html('0');
+		$('#loading-indicator').show();
+		
 		var	actualElement,
 			iteration = 0;
 		
@@ -272,6 +275,7 @@ $(function() {
 			img.onload = function() {
 				
 				actualElement.attr('src', this.src).removeAttr('toLoad');
+				$('#loading-indicator span').html(Math.round( (100 * (iteration + 1)) / elements.length ));
 				console.log((iteration + 1) + '/' + elements.length + ' - loaded' );
 				
 				iteration++;
@@ -279,6 +283,7 @@ $(function() {
 				if(iteration < elements.length) {
 					load();
 				} else {
+					$('#loading-indicator').fadeOut(150);
 					if(callback) callback();
 					return;
 				}
