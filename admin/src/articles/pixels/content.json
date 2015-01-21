@@ -5,51 +5,48 @@
 		
 		{
 			"type": 1,
-			"content": "Ce projet est une commande formulée dans le but d'établir la communication visuelle du film documentaire Walang Ilaw Sa Bahay - Une maison sans lumière de Justine Meignan. Une affiche, un flyer et un dossier de presse en cinq exemplaires reliés par mes soins ont ainsi été réalisés pour les diverses projections.<br/><br/>Le dossier reprend les caractéristiques du documentaire en gardant une mise en page posée et calme. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.",
-			"endOfDesc": false
-		},
-		{
-			"type": 1,
-			"content": "it amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.<br/><br/>Consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde.",
+			"content": "Dans l'optique de rendre le pixel tangible, ce projet r&eacute;alis&eacute; en collaboration avec trois personnes s'est orient&eacute; vers une certaine mat&eacute;rialit&eacute; du num&eacute;rique. Le pixel sort de l'&eacute;cran, s'en lib&egrave;re.<br/></br>Le clavier mis &agrave; disposition invite l'utilisateur &agrave; modifier le motif affich&eacute;. Il peut ainsi changer la gamme color&eacute;e et activer / d&eacute;sactiver les &eacute;l&eacute;ments de son choix. Il cr&eacute;e alors une exp&eacute;rience qu'il partage avec les autres spectateurs.<br/></br>2013",
 			"endOfDesc": true
 		},
 		{
 			"type": 2,
 			"content": {
-				"width": 778,
-				"height": 584,
-				"src": "walang-1.jpg",
-				"size": 46643
+				"src": "pixels-1.jpg"
 			},
 			"endOfDesc": false
 		},
 		{
 			"type": 2,
 			"content": {
-				"width": 778,
-				"height": 584,
-				"src": "walang-2.jpg",
-				"size": 35572
+				"src": "pixels-2.jpg"
 			},
 			"endOfDesc": false
 		},
 		{
 			"type": 2,
 			"content": {
-				"width": 778,
-				"height": 584,
-				"src": "walang-3.jpg",
-				"size": 44546
+				"src": "pixels-3.jpg"
 			},
 			"endOfDesc": false
 		},
 		{
 			"type": 2,
 			"content": {
-				"width": 778,
-				"height": 584,
-				"src": "walang-4.jpg",
-				"size": 46423
+				"src": "pixels-4.jpg"
+			},
+			"endOfDesc": false
+		},
+		{
+			"type": 2,
+			"content": {
+				"src": "pixels-5.jpg"
+			},
+			"endOfDesc": false
+		},
+		{
+			"type": 2,
+			"content": {
+				"src": "pixels-6.jpg"
 			},
 			"endOfDesc": false
 		}

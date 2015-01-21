@@ -16,7 +16,7 @@
 	
 }
 
-.article-main .middle {
+.middle {
 	
 	vertical-align: middle;
 	
@@ -70,13 +70,27 @@
 
 .projets {
 	
-	cursor: grab;
+	/*cursor: grab;*/
 	
 }
 
 .projets .text {
 	
 	background-color: #fff;
+	
+}
+
+.text a {
+	
+	color: #adaba5;
+	text-decoration: none;
+	
+}
+
+.text a:hover {
+	
+	color: #73706D;
+	text-decoration: underline;
 	
 }
 
@@ -100,22 +114,51 @@
 .article-content .img img {
 	
 	height: 100%;
+	cursor: pointer;
 	
 }
 
-.connaitre, .amis {
+.connaitre, .amis, .contact {
 	
 	display: none;
 	
 }
+.connaitre .text, .amis .text, .contact .text {
+	
+	padding: 5px 35px 30px 0px;
+	
+}
 
 
 
 
 
+.lightbox-main {
+	
+	position: fixed;
+	z-index: 100;
+	background-color: rgba(0,0,0,.7);
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+	display: none;
+	
+}
 
+.lightbox-main table {
+	
+	width: 100%;
+	height: 100%;
+	
+}
 
-
+.lightbox-main div {
+	
+	text-align: center;
+	
+}
 
 
 

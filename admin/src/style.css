@@ -41,7 +41,7 @@ html, body {
 	font-family: Aller;
 	font-weight: 100;
 	font-style: normal;
-	color: #96928e;
+	color: #75716d;
 	
 	min-width: 1024px;
 	
@@ -72,6 +72,11 @@ html, body {
 }
 
 
+strong {
+	
+	font-weight: bold;
+	
+}
 
 
 

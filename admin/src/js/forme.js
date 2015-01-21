@@ -44,6 +44,7 @@ $(function() {
 			$this.on('mouseleave', Emouseleave);
 			$this.on('click', Emouseclick);
 			$('#menu li[projet='+ name +']').on('mouseenter', Emouseenter);
+			$('#menu li[projet='+ name +']').on('click', Emouseclick);
 			
 		}
 		
@@ -333,6 +334,18 @@ $(function() {
 	});
 	
 	
+	$('.projets').on('click', 'img', function() {
+		
+		$('.lightbox-main img').attr('src', $(this).attr('src'));
+		$('.lightbox-main').fadeIn(300);
+		
+	});
+	
+	$('.lightbox-main').click(function() {
+		
+		$(this).fadeOut(300);
+		
+	});
 	
 	
 	$('#menu .backFromPages').click(function() {
@@ -340,7 +353,7 @@ $(function() {
 		$(this).fadeOut(300);
 		$articleMain.fadeOut(300, function() {
 			
-			$articleMain.find('.amis, .connaitre').hide();
+			$articleMain.find('.amis, .connaitre, .contact').hide();
 			$container.show();
 			$('#form-main').fadeIn(300);
 			$('.articles').fadeIn(300);
