@@ -1,8 +1,9 @@
 $(function() {
 	
 	var mouse = { click : false, hover : false, lastPos : {x:0, y:0}, dragLock : true },
-		$container = $('#form-container'),
+		$menuProjets = $('#menu .articles'),
 		$articleMain = $('.article-main'),
+		$container = $('#form-container'),
 		$preview = $('#preview'),
 		tDate = new Date(),
 		squares = [],
@@ -12,7 +13,9 @@ $(function() {
 	
 	/*
 		|| Square ||
-		$ 
+		$ Objet gérant les carrés coloré et l'interaction avec le menu
+		$ ainsi que le chargement des articles.
+		$ Objet essentiel et central du site !
 	*/
 	var Square = function (name, pos, color, size, titre, categorie) {
 		
@@ -59,65 +62,40 @@ $(function() {
 		
 		/* Fonction appelée pour charger et afficher l'article associé à l'objet Square */
 		function loadArticle() {
-			
 			$.ajax({
 				dataType: "json",
 				url: 'admin/src/articles/' + name + '/content.json?time=' + tDate.getDate() + tDate.getMonth() + tDate.getFullYear()
 			}).done(function(e) {
-				
 				var pages = e.pages,
 					$articlePages = $articleMain.find('.projets .content tr');
-				
 				$articleMain.find('.projets .titre').html(e.title);
-				
 				for(var i = 0; i < pages.length; i++) {
-					
 					var page = pages[i],
 						html = '<td class="page" index="' + i + '" >';
-					
 					if(page.type === 1) {
-						
 						html += '<div class="text" '+ ((page.endOfDesc) ? 'style="border-right: 2px solid #'+ color +';"' : '') +'>';
 						html += '<p>'+ page.content +'</p>';
-						
 					} else if (page.type === 2) {
-						
 						html += '<div class="img" '+ ((page.endOfDesc) ? 'style="border-right: 2px solid #'+ color +';"' : '') +'>';
-						html += '<img toLoad="admin/src/articles/' + name + '/img/'+ page.content.src +'" alt="visuel '+ name +'" />';
-						
+						html += '<img toLoad="admin/src/articles/' + name + '/img/'+ page.content.src +'" alt="visuel '+ name +'" />';	
 					}
-					
 					html += '</div></td>';
-					
-					$articlePages.append(html);
-					
+					$articlePages.append(html);	
 				}
-				
 				loadImages(true, function(){
-					
-					$this.animate({
-						
-						left: -10,
-						opacity: 0
-						
-					}, 300, function() {
-						
+					$this.animate({ left: -10, opacity: 0 }, 300, function() {
 						$articleMain.find('.projets').show();
 						$articleMain.fadeIn(function() {
-							
 							document.body.style.cursor = 'move';
 							mouse.dragLock = false;
 							$('#menu .backFromArticles').fadeIn();
-							
 						});
 						animating = false;
-						
 					}).removeClass('loading-cube');;
 					
 				});
 				
 			});
-
 		}
 		
 		
@@ -183,7 +161,7 @@ $(function() {
 			
 			$this.addClass('loading-cube');
 			
-			$('#menu .articles').fadeOut();
+			$menuProjets.fadeOut();
 			$('.cube').not($this).animate({
 				
 				opacity: 0
@@ -227,10 +205,8 @@ $(function() {
 			var img = new Image();
 			img.onload = function() {
 				if(adjust) {
-					if( img.width / img.height <=  395 / 250)
-						actualElement.css('width', '100%').css('top', - (( ((395 / img.width) * img.height) - 250) / 2) + 'px' );
-					else
-						actualElement.css('height', '100%').css('left', - (( ((250 / img.height) * img.width)  - 395) / 2) + 'px' );
+					if( img.width / img.height <=  395 / 250) actualElement.css('width', '100%').css('top', - (( ((395 / img.width) * img.height) - 250) / 2) + 'px' );
+					else actualElement.css('height', '100%').css('left', - (( ((250 / img.height) * img.width)  - 395) / 2) + 'px' );
 				}
 				actualElement.attr('src', this.src).removeAttr('toLoad');
 				$('#loading-indicator span').html(Math.round( (100 * (iteration + 1)) / elements.length ));
@@ -287,7 +263,7 @@ $(function() {
 						for(var i=0; i < squares.length; i++)
 							squares[i].popIn();
 						
-						setTimeout(function(){ $('#menu .articles').fadeIn(300); }, (squares.length * 50) + 300);
+						setTimeout(function(){ $menuProjets.fadeIn(300); }, (squares.length * 50) + 300);
 							
 					});
 					
@@ -303,7 +279,17 @@ $(function() {
 			
 	}
 	
-	$('.article-main *').on('mousedown', function(event) {event.preventDefault ? event.preventDefault() : event.returnValue = false;});
+	
+	
+	
+	
+	/* 
+		||			  ||
+		||   EVENTS   ||
+		||			  ||
+	 */
+	$('.article-main *').on('mousedown', function(event) {
+		event.preventDefault ? event.preventDefault() : event.returnValue = false;});
 	
 	$(document).on('mousedown', function(e) {
 		mouse.click = true;
@@ -313,34 +299,24 @@ $(function() {
 		mouse.click = false;});
 	
 	$articleMain.on('mousemove', function(e) {
-		
 		if(!mouse.click || mouse.dragLock) return;
-		
-		
 		var delta = e.pageX - mouse.lastPos.x;
-		
 		$articleMain.scrollLeft( $articleMain.scrollLeft() - (delta * 2) );
-		
-		mouse.lastPos = {x: e.pageX, y: e.pageY};
-		
-	});
+		mouse.lastPos = {x: e.pageX, y: e.pageY};});
 	
 	/* EVENTS */
 	$('#menu').on('mouseleave', 'li[projet]', function() {
-		
 		$('.cube .hovered').hide();
 		$('.cube .rest').show();
 		$preview.find('img').hide();
-		$('#menu li[projet]').removeClass('hovered');
-		
-	});
+		$('#menu li[projet]').removeClass('hovered');});
 	
-	$('#menu .backFromArticles').click(function() {
+	$('#menu .backFromArticles li').click(function() {
 		
 		document.body.style.cursor = 'auto';
 		mouse.dragLock = true;
 		
-		$(this).fadeOut(300);
+		$('#menu .backFromArticles').fadeOut(300);
 		$articleMain.fadeOut(300, function() {
 			
 			
@@ -358,7 +334,7 @@ $(function() {
 				if(carret < squares.length)
 					setTimeout(squareBySquare, 50);
 				else
-					setTimeout(function(){ $('#menu .articles').fadeIn(300); }, 350);
+					setTimeout(function(){ $menuProjets.fadeIn(300); }, 350);
 					
 					
 			}
@@ -370,23 +346,9 @@ $(function() {
 	});
 	
 	
-	$('.projets').on('click', 'img', function() {
+	$('#menu .backFromPages li').click(function() {
 		
-		$('.lightbox-main img').attr('src', $(this).attr('src'));
-		$('.lightbox-main').fadeIn(300);
-		
-	});
-	
-	$('.lightbox-main').click(function() {
-		
-		$(this).fadeOut(300);
-		
-	});
-	
-	
-	$('#menu .backFromPages').click(function() {
-		
-		$(this).fadeOut(300);
+		$('#menu .backFromPages').fadeOut(300);
 		$articleMain.fadeOut(300, function() {
 			
 			$articleMain.find('.amis, .connaitre, .contact').hide();
@@ -398,13 +360,18 @@ $(function() {
 				
 	});
 	
+	$('.projets').on('click', 'img', function() {
+		$('.lightbox-main img').attr('src', $(this).attr('src'));
+		$('.lightbox-main').fadeIn(300);});
 	
+	$('.lightbox-main').click(function() {
+		$(this).fadeOut(300);});
 	
 	$('.link[page]').click(function() {
 		
 		$this = $(this);
 		
-		$('#menu .articles').fadeOut(function() {
+		$menuProjets.fadeOut(function() {
 			
 			$('#menu .backFromPages').fadeIn(300);
 			
