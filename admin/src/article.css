@@ -106,6 +106,7 @@
 
 .article-content .img {
 	
+	width: 395px;
 	height: 250px;
 	overflow: hidden;
 	
@@ -113,7 +114,7 @@
 
 .article-content .img img {
 	
-	height: 100%;
+	position: relative;
 	cursor: pointer;
 	
 }
@@ -159,10 +160,6 @@
 	text-align: center;
 	
 }
-
-
-
-
 
 
 
