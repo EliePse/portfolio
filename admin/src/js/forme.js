@@ -78,6 +78,9 @@ $(function() {
 					} else if (page.type === 2) {
 						html += '<div class="img" '+ ((page.endOfDesc) ? 'style="border-right: 2px solid #'+ color +';"' : '') +'>';
 						html += '<img toLoad="admin/src/articles/' + name + '/img/'+ page.content.src +'" alt="visuel '+ name +'" />';	
+					} else if (page.type === 3) {
+						html += '<div class="embed" '+ ((page.endOfDesc) ? 'style="border-right: 2px solid #'+ color +';"' : '') +'>';
+						html += page.content;
 					}
 					html += '</div></td>';
 					$articlePages.append(html);	
@@ -239,43 +242,29 @@ $(function() {
 			url: 'admin/src/articles/articles.json?time=' + tDate.getDate() + tDate.getMonth() + tDate.getFullYear()
 		}).done(function(e) {
 			
-			
 			var projets = e.data,
 				carret = 0;
-			
-			function squareBySquare() {
-			
-				var p = projets[carret],
+				
+			for(var i=0; i < projets.length; i++) {
+				var p = projets[i],
 					o = new Square( p.name, p.position, p.couleur, p.taille, p.titre, p.categorie);
-				
 				squares.push( o );
-				
 				o.init();
-				carret++;
-				
-				if(carret < projets.length)
-					setTimeout(squareBySquare, 50);
-				else {
-					loadImages(false, function(){
-						
-						$('.loading-cube').fadeOut(500).remove();
-						
-						for(var i=0; i < squares.length; i++)
-							squares[i].popIn();
-						
-						setTimeout(function(){ $menuProjets.fadeIn(300); }, (squares.length * 50) + 300);
-							
-					});
-					
-				}
-					
 			}
 			
-			setTimeout(squareBySquare, 300);
+			loadImages(false, function(){
+				$('.loading-cube').fadeOut(500, function() {
+					$(this).remove();
+					squareBySquare();});
+			});
 			
-		}).fail(function(a,f,e) {
-			alert('Erreur de chargement ! :(')
-		});
+			function squareBySquare() {
+				squares[carret].popIn();
+				carret++;
+				if(carret < squares.length) setTimeout(squareBySquare, 50);
+				else $menuProjets.fadeIn(300);}
+			
+		}).fail(function(a,f,e) { alert('Erreur de chargement ! :('); });
 			
 	}
 	
@@ -288,7 +277,8 @@ $(function() {
 		||   EVENTS   ||
 		||			  ||
 	 */
-	$('.article-main *').on('mousedown', function(event) {
+	// $('.article-main *').on('mousedown', function(event) {
+	$('.projets *').on('mousedown', function(event) {
 		event.preventDefault ? event.preventDefault() : event.returnValue = false;});
 	
 	$(document).on('mousedown', function(e) {

@@ -10,76 +10,27 @@
 		
 		<h1 id="title">Élie Meignan</h1>
 		
-		<!--
-		<div id="menu">
-			<table><tr><td>
-				<li>
-					<ul class="link"><a href="dashboard.html">retour</a></ul>
-				</li>
-			</td></tr></table>
-		</div>
-		
-		<div id="main" style="display:none;">
-
-			<table>
-				<tr class="form-content">
-					<td>
-						<div id="previews"></div>
-						<div id="form-container" style="border:1px solid #bfbfbf;"></div>
-					</td>
-				</tr>
-			</table>
-
-
-		</div>
-		-->
-		
-		
 		<div class="article-main">
 			<table>
 				<tr>
-					<td>
-						<div class="article-content">
-							
-							<h1 class="titre">Titre</h1>
-						
+					<td class="middle">
+						<div class="article-content projets">
+							<h1 class="titre"></h1>
 							<table class="content"><tr>
-							
-								<td index="0" ></td>
-								
-							</tr></table>
+								<td class="page" index="0">
+									<div class="text"><p></p></div></td>
+								<td class="page" index="1">
+									<div class="text"><p></p></div></td>
+								</tr></table>
 						</div>
 					</td>
 				</tr>
 			</table>
 		</div>
 		
-		
 		<div id="edit-tools">
-			
 			<input type="text" class="titre" placeholder="titre" />
-			
-			<div class="type" style="display:block;">
-				<ul>
-					<li type="texte"><img src="src/interface/ico-texte.png"/></li>
-					<li type="image"><img src="src/interface/ico-image.png"/></li>
-					<li type="code"><img src="src/interface/ico-code.png"/></li>
-				</ul>
-			</div>
-			
-			<textarea class="tool" atype="texte" style="display:none;" placeholder="Contenu de la page"></textarea>
-			<input    class="tool" atype="image" style="display:none;" type="file" accept="image/*" />
-			
-		</div>
-		
-		
-		<div id="choice">
-			<ul>
-				<li><input type="submit" value="supprimer page" action="sup" /></li>
-				<li><input type="submit" value="ajouter page" action="add"/></li>
-				<li><input type="submit" value="description toggle" action="bor"/></li>
-				<li><input type="submit" value="enregistrer" /></li>
-			</ul>
+			<textarea class="tool" atype="texte" placeholder="Contenu de la page"></textarea>
 		</div>
 		
 		<div id="copyright">
@@ -87,22 +38,32 @@
 		</div>
 		
 		<script type="text/javascript" src="src/js/jquery-1.11.2.min.js"></script>
-		<script type="text/javascript" src="src/js/functions.js"></script>
-		<script type="text/javascript" src="src/js/main.js"></script>
+		<script type="text/javascript">
+			/*
+			
+			Projet personnel pour un concours non-officiel organisé par <a href="http://agencebabel.com/">l'Agence Babel.</a>
+
+
+
+2014
+			*/
+			function htmlEncode( html ) {
+				// var html = html.replace(/(?:\r\n|\r|\n)/g, '<br/>');
+			return document.createElement( 'a' ).appendChild( 
+				document.createTextNode( html ) ).parentNode.innerHTML;
+			};
+			
+			$('textarea').on('keyup', function(){
+				$('.content .page[index=0] p').html( $(this).val().replace(/(?:\r\n|\r|\n)/g, '<br/>') );
+				$('.content .page[index=1] p').html( htmlEncode( $(this).val() ).replace(/(?:\r\n|\r|\n)/g, '&lt;br/&gt;').replace(/\"/g, '\\\"') );
+			});
+				// $('.content .page[index=1] p').html( $(this).val().replace(/(?:\r\n|\r|\n)/g, '&lt;br/&gt;') );});
+			
+			$('input').on('keyup', function(){
+				$('.projets .titre').html( $(this).val() );});
+			
+		</script>
 		
 	</body>
 </html>
-
-<!-- <td>
-		<div class="text">
-			<p>Ce projet est une commande formulée dans le but d'établir la communication visuelle du film documentaire Walang Ilaw Sa Bahay - Une maison sans lumière de Justine Meignan. Une affiche, un flyer et un dossier de presse en cinq exemplaires reliés par mes soins ont ainsi été réalisés pour les diverses projections.<br/><br/>
-			Le dossier reprend les caractéristiques du documentaire en gardant une mise en page posée et calme. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum</p>
-		</div>
-	</td> -->
-	<!-- <td>
-		<div class="text desc-end">
-			<p>it amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.<br/><br/>
-			Consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde.</p>
-		</div>
-	</td> -->
 		

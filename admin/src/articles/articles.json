@@ -2,27 +2,27 @@
 	
 	"data" : [
 		{
-			"name" : "walang",
 			"titre" : "Walang Ilaw Sah bahay",
+			"name" : "walang",
 			"couleur" : "f2956d",
-			"position" : [200, 200],
-			"categorie" : 2,
+			"position" : [200, 250],
+			"categorie" : 0,
 			"taille" : 1
 		},
 		{
-			"name" : "pixels",
 			"titre" : "Mur de Pixels",
+			"name" : "pixels",
 			"couleur" : "48a7bd",
-			"position" : [150, 100],
-			"categorie" : 1,
+			"position" : [150, 150],
+			"categorie" : 0,
 			"taille" : 2
 		},
 		{
-			"name" : "tiroirs",
 			"titre" : "Histoire de Tiroirs",
-			"couleur" : "58abcc",
-			"position" : [250, 150],
-			"categorie" : 1,
+			"name" : "tiroirs",
+			"couleur" : "eb7a5e",
+			"position" : [250, 200],
+			"categorie" : 0,
 			"taille" : 2
 		}
 	]

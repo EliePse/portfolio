@@ -1,12 +1,16 @@
 {
 	"title": "Mur de Pixels",
-	"created at": 11201651,
 	"pages": [
 		
 		{
 			"type": 1,
-			"content": "Dans l'optique de rendre le pixel tangible, ce projet r&eacute;alis&eacute; en collaboration avec trois personnes s'est orient&eacute; vers une certaine mat&eacute;rialit&eacute; du num&eacute;rique. Le pixel sort de l'&eacute;cran, s'en lib&egrave;re.<br/></br>Le clavier mis &agrave; disposition invite l'utilisateur &agrave; modifier le motif affich&eacute;. Il peut ainsi changer la gamme color&eacute;e et activer / d&eacute;sactiver les &eacute;l&eacute;ments de son choix. Il cr&eacute;e alors une exp&eacute;rience qu'il partage avec les autres spectateurs.<br/></br>2013",
+			"content": "Installation num&eacute;rique interactive r&eacute;alis&eacute;e en collaboration avec Vincent Maillard et Betty Bouteiller pour la journ&eacute;e <i>Portes Ouvertes</i> du BTS Design Graphique de Boulogne-Billancourt.<br/><br/>Ce projet s'articule autour de la question de la mat&eacute;rialit&eacute; de num&eacute;rique.<br/><br/>Mapping vid&eacute;o sur cubes en papiers, ordinateur<br/>2013",
 			"endOfDesc": true
+		},
+		{
+			"type": 3,
+			"content": "<iframe src=\"//player.vimeo.com/video/111345977\" width=\"395\" height=\"250\" frameborder=\"0\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
+			"endOfDesc": false
 		},
 		{
 			"type": 2,
