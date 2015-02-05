@@ -24,6 +24,30 @@
 			"position" : [250, 200],
 			"categorie" : 0,
 			"taille" : 2
+		},
+		{
+			"titre" : "Le Livre de Sable",
+			"name" : "borges",
+			"couleur" : "eb7a5e",
+			"position" : [300, 300],
+			"categorie" : 0,
+			"taille" : 1
+		},
+		{
+			"titre" : "Food International",
+			"name" : "thetris",
+			"couleur" : "eb7a5e",
+			"position" : [300, 350],
+			"categorie" : 0,
+			"taille" : 1
+		},
+		{
+			"titre" : "The Babel Game",
+			"name" : "babelgame",
+			"couleur" : "eb7a5e",
+			"position" : [300, 400],
+			"categorie" : 0,
+			"taille" : 1
 		}
 	]
 	
